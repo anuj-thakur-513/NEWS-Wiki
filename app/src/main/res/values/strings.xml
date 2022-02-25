@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NEWS Wiki</string>
+
+    <string name="news_tools">Software Version 11.0 is here as part of our biggest holiday release yet. Introducing some of our most creative features, from a new Light Show function that lets you (or anyone with a computer) choreograph light shows to your own music, to new games and entertainment experiences, safety features, customizable controls and an all-new user-interface design.This week, Tesla owners around the world will be able to do more with their cars, and have even more fun, all with a free, over-the-air software update.Here’s what’s new:Tesla Light Show: Anybody with a computer can now create their own unique Tesla Light Show, no Tesla vehicle required. Using xLights, free open-source software, you can create a light show to perform with any music of your choice. You can then download your show, or shows from other creators, onto a USB flash drive and upload it to your car.Light Show also comes pre-loaded with one song for you to enjoy, and works with all new Model S, new Model X, and any Model 3 or Model Y.Getting Started Documentation can be found here.</string>
+
+    <string name="news_headline_tools">Introducing Software V11.0</string>
+
+    <string name="no_news">No News Found.</string>
+    <string name="no_internet">No Internet Connection.</string>
+</resources>

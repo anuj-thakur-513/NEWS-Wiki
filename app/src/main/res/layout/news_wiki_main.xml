@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/card_view"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true">
+
+        <EditText
+            android:id="@+id/search_box"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/search_box_shape"
+            android:backgroundTint="@color/search_background"
+            android:drawableLeft="@drawable/search_icon"
+            android:hint="Search any topic"
+            android:imeActionLabel="Search any topic"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:paddingEnd="20dp" />
+    </androidx.cardview.widget.CardView>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/card_view"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/primary" />
+
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textAppearance="?android:textAppearanceMedium"
+        tools:text="No Internet Connection!" />
+
+    <FrameLayout
+        android:id="@+id/adView_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/list"
+        android:background="#666666">
+    </FrameLayout>
+</RelativeLayout>
