@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -35,7 +35,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         News currentNews = getItem(position);
 
         ImageView newsImage = (ImageView) listItemView.findViewById(R.id.news_image);
-        Picasso.with(getContext()).load(Uri.parse(currentNews.getImageUrl())).into(newsImage);
+        Glide.with(getContext()).load(currentNews.getImageUrl()).into(newsImage);
 
         TextView heading = (TextView) listItemView.findViewById(R.id.news_headline);
         heading.setText(currentNews.getHeadline());
