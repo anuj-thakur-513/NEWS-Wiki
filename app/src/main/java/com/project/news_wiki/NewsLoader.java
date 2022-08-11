@@ -7,7 +7,7 @@ import java.util.List;
 
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
 //    Storing the URL
-    private String mUrl;
+    private final String mUrl;
 
     public NewsLoader(Context context, String url) {
         super(context);

@@ -54,15 +54,11 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
     //    TextView that is displayed when the list is empty
     private TextView mEmptyStateTextView;
 
-    //    TODO: remove this AdView when uploading the code to GitHub
-    //    Frame Layout for adContainer
-    private FrameLayout adContainerView;
-
     //    Adding adView for adding ads
     private AdView adView;
 
     //    Search Box and related items
-    private static EditText searchBox;
+    private EditText searchBox;
     private static String searchContent;
 
     //    Progress bar
@@ -70,7 +66,7 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
 
     //    URL for fetching latest news from the NEWS API
 //    TODO: Hide the API key when uploading to GITHUB
-    private static String NEWS_URL =
+    private static final String NEWS_URL =
             "https://newsapi.org/v2/top-headlines?country=in&sortBy=publishedAt&language=en&apiKey=e5547a146257437d98894164ba1d1a77";
 
     /**
@@ -100,7 +96,9 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
 
 //        TODO: remove AD and APP ID from the code when uploading to GitHub
 //        get the reference to your FrameLayout
-        adContainerView = findViewById(R.id.adView_container);
+        //    TODO: remove this AdView when uploading the code to GitHub
+        //    Frame Layout for adContainer
+        FrameLayout adContainerView = findViewById(R.id.adView_container);
 
 //        Create an AdView and put it into your FrameLayout
         adView = new AdView(this);
@@ -125,18 +123,18 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
 //            Initialize the loader and pass the ID of our loader along with arguments and callback
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
         } else {
-            progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+            progressBar = findViewById(R.id.progress_bar);
             progressBar.setVisibility(View.GONE);
 
 //            Update the empty state
-            mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+            mEmptyStateTextView = findViewById(R.id.empty_view);
             mEmptyStateTextView.setText(R.string.no_internet);
         }
 
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         newsListView.setEmptyView(mEmptyStateTextView);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar);
 
 //        Create a new adapter and set the adapter in the newsListView
         mAdapter = new NewsAdapter(this, new ArrayList<>());
@@ -184,10 +182,6 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
 
     /**
      * Implementing loader methods
-     *
-     * @param id
-     * @param args
-     * @return
      */
 
     @Override

@@ -51,10 +51,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     //    adapter for storing data
     private NewsAdapter mAdapter;
 
-    //    TODO: remove this AdView when uploading the code to GitHub
-    //    Frame Layout for adContainer
-    private FrameLayout adContainerView;
-
     //    Adding adView for adding ads
     private AdView adView;
 
@@ -90,7 +86,9 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
 
 //        TODO: remove AD and APP ID from the code when uploading to GitHub
 //        get the reference to your FrameLayout
-        adContainerView = findViewById(R.id.adView_container);
+        //    TODO: remove this AdView when uploading the code to GitHub
+        //    Frame Layout for adContainer
+        FrameLayout adContainerView = findViewById(R.id.adView_container);
 
 //        Create an AdView and put it into your FrameLayout
         adView = new AdView(this);
@@ -154,10 +152,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
 
     /**
      * Implementing loader methods
-     *
-     * @param id
-     * @param args
-     * @return
      */
 
     @Override
@@ -199,7 +193,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     }
 
 
-//    TODO: remove these methods when uploading the code to GitHub
+    //    TODO: remove these methods when uploading the code to GitHub
 //    Function to get the adaptive size for the ads
     private AdSize getAdSize() {
 //    Determine the screen width to use for the ad width.

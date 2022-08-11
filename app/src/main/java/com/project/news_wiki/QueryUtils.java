@@ -82,13 +82,13 @@ public final class QueryUtils {
 
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
-        if(inputStream != null){
+        if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
             String line = bufferedReader.readLine();
 
-            while(line != null){
+            while (line != null) {
                 output.append(line);
                 line = bufferedReader.readLine();
             }
@@ -96,7 +96,7 @@ public final class QueryUtils {
         return output.toString();
     }
 
-//    Parse the JSON response from the string
+    //    Parse the JSON response from the string
     private static List<News> extractDataFromJson(String jsonResponse) {
         List<News> news = new ArrayList<>();
 
@@ -110,7 +110,7 @@ public final class QueryUtils {
                 String title = currentArticle.getString("title");
                 String url = currentArticle.getString("url");
 
-                if(url.contains("com")) {
+                if (url.contains("com")) {
                     String[] separated = url.split(".com");
                     url = separated[0] + ".com";
                 } else {
@@ -120,11 +120,11 @@ public final class QueryUtils {
 
                 String urlToImage = currentArticle.getString("urlToImage");
                 String content = currentArticle.getString("content");
-                if(content == "null") {
+                if (content == "null") {
                     content = currentArticle.getString("description");
                 }
 
-                content = content.replaceAll("<.*>","");
+                content = content.replaceAll("<.*>", "");
 
                 News news1 = new News(urlToImage, title, content, url);
                 news.add(news1);
@@ -135,14 +135,14 @@ public final class QueryUtils {
         return news;
     }
 
-    public static List<News> fetchNews(String stringUrl){
+    public static List<News> fetchNews(String stringUrl) {
         URL url = createUrl(stringUrl);
         String jsonResponse = null;
 
         try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP request from fetchNews method",e.getCause());
+            Log.e(LOG_TAG, "Problem making the HTTP request from fetchNews method", e.getCause());
         }
 
         List<News> news = extractDataFromJson(jsonResponse);
