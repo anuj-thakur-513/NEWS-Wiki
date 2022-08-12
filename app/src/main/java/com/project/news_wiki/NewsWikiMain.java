@@ -65,7 +65,6 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
     private ProgressBar progressBar;
 
     //    URL for fetching latest news from the NEWS API
-//    TODO: Hide the API key when uploading to GITHUB
     private static final String NEWS_URL =
             "https://newsapi.org/v2/top-headlines?country=in&sortBy=publishedAt&language=en&apiKey=e5547a146257437d98894164ba1d1a77";
 
@@ -74,7 +73,6 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
      */
     private NewsAdapter mAdapter;
 
-    //    TODO: Hide the mail id when uploading to GITHUB
     protected static final String ACCEPT_PROPERTY = "application/geo+json;version=1";
     protected static final String USER_AGENT_PROPERTY = "newsapi.org (anujthakur2003.anuj@gmail.com)"; //your email id for that site.
 
@@ -94,9 +92,7 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
             }
         });
 
-//        TODO: remove AD and APP ID from the code when uploading to GitHub
 //        get the reference to your FrameLayout
-        //    TODO: remove this AdView when uploading the code to GitHub
         //    Frame Layout for adContainer
         FrameLayout adContainerView = findViewById(R.id.adView_container);
 
@@ -222,7 +218,6 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
     }
 
 
-//    TODO: remove these methods when uploading the code to GitHub
 //    Function to get the adaptive size for the ads
     private AdSize getAdSize() {
 //    Determine the screen width to use for the ad width.

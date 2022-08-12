@@ -30,7 +30,6 @@
             </intent-filter>
         </activity>
 
-<!--   TODO: remove this meta data when uploading the code to GitHub     -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9373632721279412~4275632255"/>

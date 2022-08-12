@@ -84,9 +84,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
 //        Get the reference to the list view where the data is to be added
         ListView newsListView = (ListView) findViewById(R.id.list);
 
-//        TODO: remove AD and APP ID from the code when uploading to GitHub
 //        get the reference to your FrameLayout
-        //    TODO: remove this AdView when uploading the code to GitHub
         //    Frame Layout for adContainer
         FrameLayout adContainerView = findViewById(R.id.adView_container);
 
@@ -193,7 +191,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     }
 
 
-    //    TODO: remove these methods when uploading the code to GitHub
 //    Function to get the adaptive size for the ads
     private AdSize getAdSize() {
 //    Determine the screen width to use for the ad width.
