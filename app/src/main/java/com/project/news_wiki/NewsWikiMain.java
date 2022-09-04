@@ -8,15 +8,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,16 +21,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.RequestConfiguration;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class NewsWikiMain extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
@@ -53,9 +41,6 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
 
     //    TextView that is displayed when the list is empty
     private TextView mEmptyStateTextView;
-
-    //    Adding adView for adding ads
-    private AdView adView;
 
     //    Search Box and related items
     private EditText searchBox;
@@ -84,28 +69,6 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
 
 //        Get the reference to the list view where the data is to be added
         newsListView = findViewById(R.id.list);
-
-//        Call the function to initialize AdMob SDK
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-//        get the reference to your FrameLayout
-        //    Frame Layout for adContainer
-        FrameLayout adContainerView = findViewById(R.id.adView_container);
-
-//        Create an AdView and put it into your FrameLayout
-        adView = new AdView(this);
-        adContainerView.addView(adView);
-
-        adView = new AdView(this);
-        adContainerView.addView(adView);
-        adView.setAdUnitId("ca-app-pub-9373632721279412/6769933651");
-
-//        start requesting banner ads
-        loadBanner();
 
 //        Get a reference to the ConnectivityManager to check state of network
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -216,37 +179,4 @@ public class NewsWikiMain extends AppCompatActivity implements LoaderManager.Loa
 //        Clear the adapter
         mAdapter.clear();
     }
-
-
-//    Function to get the adaptive size for the ads
-    private AdSize getAdSize() {
-//    Determine the screen width to use for the ad width.
-        Display display = getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-
-        float widthPixels = outMetrics.widthPixels;
-        float density = outMetrics.density;
-
-//    you can also pass your selected width here in dp
-        int adWidth = (int) (widthPixels / density);
-
-//    return the optimal size depends on your orientation (landscape or portrait)
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
-    }
-
-//    Function to request banner ads
-    private void loadBanner() {
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-
-        AdSize adSize = getAdSize();
-//    Set the adaptive ad size to the ad view.
-        adView.setAdSize(adSize);
-
-//    Start loading the ad in the background.
-        adView.loadAd(adRequest);
-    }
-
 }

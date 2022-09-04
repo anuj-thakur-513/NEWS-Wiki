@@ -8,9 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -21,12 +19,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SearchActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
@@ -47,12 +42,8 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     //    Progress bar
     private ProgressBar progressBar;
 
-
     //    adapter for storing data
     private NewsAdapter mAdapter;
-
-    //    Adding adView for adding ads
-    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +70,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         String searchQuery = intent.getStringExtra(NewsWikiMain.EXTRA_TEXT);
         searchQuery = searchQuery.toUpperCase();
 
-        getSupportActionBar().setTitle(searchQuery);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(searchQuery);
 
 //        Get the reference to the list view where the data is to be added
         ListView newsListView = (ListView) findViewById(R.id.list);
@@ -87,17 +78,6 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
 //        get the reference to your FrameLayout
         //    Frame Layout for adContainer
         FrameLayout adContainerView = findViewById(R.id.adView_container);
-
-//        Create an AdView and put it into your FrameLayout
-        adView = new AdView(this);
-        adContainerView.addView(adView);
-
-        adView = new AdView(this);
-        adContainerView.addView(adView);
-        adView.setAdUnitId("ca-app-pub-9373632721279412/6769933651");
-
-//        start requesting banner ads
-        loadBanner();
 
 //        Get a reference to the ConnectivityManager to check state of network
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -188,37 +168,5 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
     public void onLoaderReset(Loader<List<News>> loader) {
 //        clear the adapter
         mAdapter.clear();
-    }
-
-
-//    Function to get the adaptive size for the ads
-    private AdSize getAdSize() {
-//    Determine the screen width to use for the ad width.
-        Display display = getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-
-        float widthPixels = outMetrics.widthPixels;
-        float density = outMetrics.density;
-
-//    you can also pass your selected width here in dp
-        int adWidth = (int) (widthPixels / density);
-
-//    return the optimal size depends on your orientation (landscape or portrait)
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
-    }
-
-    //    Function to request banner ads
-    private void loadBanner() {
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-
-        AdSize adSize = getAdSize();
-//    Set the adaptive ad size to the ad view.
-        adView.setAdSize(adSize);
-
-//    Start loading the ad in the background.
-        adView.loadAd(adRequest);
     }
 }

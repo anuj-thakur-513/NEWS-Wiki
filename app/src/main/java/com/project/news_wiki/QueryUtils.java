@@ -120,7 +120,7 @@ public final class QueryUtils {
 
                 String urlToImage = currentArticle.getString("urlToImage");
                 String content = currentArticle.getString("content");
-                if (content == "null") {
+                if (content.equals("null")) {
                     content = currentArticle.getString("description");
                 }
 
